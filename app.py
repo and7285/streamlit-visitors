@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # 제목
 st.title("📈 방문자 수 대시보드")
