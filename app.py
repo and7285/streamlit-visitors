@@ -1,5 +1,5 @@
 import streamlit as st
-import pandas as pd 
+import pandas as pd
 
 # 제목
 st.title("📈 방문자 수 대시보드")
@@ -17,13 +17,8 @@ st.metric("총 페이지뷰", f"{df['페이지뷰'].sum():,}회")
 
 # 꺾은선 그래프: 방문자수
 st.subheader("일자별 방문자 수")
-fig, ax = plt.subplots()
-ax.plot(df["날짜"], df["방문자수"], marker="o")
-ax.set_ylabel("방문자수")
-ax.set_xlabel("날짜")
-plt.xticks(rotation=45)
-st.pyplot(fig)
+st.line_chart(df.set_index("날짜")["방문자수"], width="stretch")
 
 # 꺾은선 그래프: 페이지뷰
 st.subheader("일자별 페이지뷰")
-st.line_chart(df.set_index("날짜")["페이지뷰"])
+st.line_chart(df.set_index("날짜")["페이지뷰"], width="stretch")
