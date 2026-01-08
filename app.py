@@ -1,24 +1,67 @@
-import streamlit as st
-import pandas as pd
+# ---- Feature Cards Section ----
+st.markdown("""
+<style>
+.features {
+    margin-top: 72px;
+    padding: 0 24px;
+}
 
-# 제목
-st.title("📈 방문자 수 대시보드")
+.feature-card {
+    background-color: #FFFFFF;
+    padding: 36px 32px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    height: 100%;
+}
 
-# 데이터 불러오기
-@st.cache_data
-def load_data():
-    return pd.read_csv("visitors_sample.csv", parse_dates=["날짜"])
+.feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
 
-df = load_data()
+.feature-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555555;
+}
+</style>
+""", unsafe_allow_html=True)
 
-# 요약 지표
-st.metric("총 방문자 수", f"{df['방문자수'].sum():,}명")
-st.metric("총 페이지뷰", f"{df['페이지뷰'].sum():,}회")
+st.markdown('<div class="features">', unsafe_allow_html=True)
 
-# 꺾은선 그래프: 방문자수
-st.subheader("일자별 방문자 수")
-st.line_chart(df.set_index("날짜")["방문자수"], width="stretch")
+col1, col2, col3 = st.columns(3)
 
-# 꺾은선 그래프: 페이지뷰
-st.subheader("일자별 페이지뷰")
-st.line_chart(df.set_index("날짜")["페이지뷰"], width="stretch")
+with col1:
+    st.markdown("""
+    <div class="feature-card">
+        <h3>🛡️ Deepfake Detection</h3>
+        <p>
+            Detect manipulated media with industry-leading accuracy.
+            Our AI identifies even the most subtle synthetic artifacts.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="feature-card">
+        <h3>🔍 Media Integrity Analysis</h3>
+        <p>
+            Analyze media artifacts inside and out to verify authenticity
+            across images, video, and audio.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""
+    <div class="feature-card">
+        <h3>⚡ Instant Verification</h3>
+        <p>
+            Make high-impact security decisions in seconds with automated,
+            real-time verification pipelines.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
